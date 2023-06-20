@@ -14,7 +14,7 @@
         "sqladmin": {
             "value": "admin123"
         },
-        "sqlpassword": {
+        "pass": {
             "value": "test123!"
         }
     }

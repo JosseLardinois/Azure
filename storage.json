@@ -8,12 +8,12 @@
                 "description": "description"
             }
         },
-        "containername": {
+        "containername": { 
             "type": "string",
             "metadata": {
                 "description": "description"
             }
-        },
+        }, 
         "sqlservername": {
             "type": "string",
             "metadata": {
@@ -26,7 +26,7 @@
                 "description": "description"
             }
         },
-        "sqlpassword": {
+        "pass": {
             "type": "string",
             "metadata": {
                 "description": "description"
@@ -51,14 +51,14 @@
             }
         },
         {
-            "name": "[format('{0}/default/{1}', parameters('storagename'), parameters('containername'))]",
+            "name": "[format('{0}/default/{1}',parameters('storagename'),parameters('containername'))]",
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2021-04-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts',  parameters('storagename'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ],
             "properties": {
-                "publicAccess": "None"
+                "publicAccess": "Container"
             }
         },
         {
@@ -67,14 +67,14 @@
             "apiVersion": "2014-04-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "[parameters('sqlservername')]"
+                "displayName": "parameters('sqlservername')"
             },
             "properties": {
                 "administratorLogin": "[parameters('sqladmin')]",
-                "administratorLoginPassword": "[parameters('sqlpassword')]"
+                "administratorLoginPassword": "[parameters('pass')]"
             },
-            "dependsOn":[
-                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ],
             "resources": [
                 {
@@ -93,15 +93,15 @@
             ]
         },
         {
-            "name": "[concat(parameters('sqlservername'), '/sqldbdemoARM')]",
+            "name": "[concat(parameters('sqlservername'),'/sqldemo')]",
             "type": "Microsoft.Sql/servers/databases",
             "apiVersion": "2014-04-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "[concat(parameters('sqlservername'), '/sqldbdemoARM')]"
+                "displayName": "[concat(parameters('sqlservername'),'/sqldemo')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts',  parameters('sqlservername'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlservername'))]"
             ],
             "properties": {
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
