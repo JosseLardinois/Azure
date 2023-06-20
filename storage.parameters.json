@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storagename": {
-            "value": "storagedemoARM" // TODO: Fill in parameter value
+            "value": "storagedemoARM"
         },
         "containername": {
-            "value": "democontainerARM" // TODO: Fill in parameter value
+            "value": "democontainerARM"
         },
         "sqlservername": {
-            "value": "demosqlserverARM" // TODO: Fill in parameter value
+            "value": "demosqlserverARM"
         },
         "sqladmin": {
-            "value": "admin123" // TODO: Fill in parameter value
+            "value": "admin123"
         },
         "sqlpassword": {
-            "value": "test123!" // TODO: Fill in parameter value
+            "value": "test123!"
         }
     }
 }
