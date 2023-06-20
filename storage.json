@@ -71,7 +71,7 @@
             },
             "properties": {
                 "administratorLogin": "[parameters('sqladmin')]",
-                "administratorLoginPassword": "[parameters('sqladmin')]"
+                "administratorLoginPassword": "[parameters('sqlpassword')]"
             },
             "dependsOn":[
                  "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
