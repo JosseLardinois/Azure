@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "logicAppName": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of the Logic App"
+        }
+      },
+      "functionApp1Name": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of the first Azure Function App"
+        }
+      },
+      "functionApp2Name": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of the second Azure Function App"
+        }
+      }
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Logic/workflows",
+        "apiVersion": "2017-07-01",
+        "name": "[parameters('logicAppName')]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "state": "Enabled",
+          "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {},
+            "triggers": {
+              "Recurrence": {
+                "type": "Recurrence",
+                "recurrence": {
+                  "frequency": "Hour",
+                  "interval": 1
+                }
+              }
+            },
+            "actions": {
+              "StartFunctionApp1": {
+                "type": "Http",
+                "inputs": {
+                  "method": "POST",
+                  "uri": "[concat('https://', parameters('functionApp1Name'), '.azurewebsites.net/api/start?code=YOUR_FUNCTION_KEY')]"
+                }
+              },
+              "StartFunctionApp2": {
+                "type": "Http",
+                "inputs": {
+                  "method": "POST",
+                  "uri": "[concat('https://', parameters('functionApp2Name'), '.azurewebsites.net/api/start?code=YOUR_FUNCTION_KEY')]"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+  

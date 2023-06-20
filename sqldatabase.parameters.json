@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storagename": {
-            "value": "storagedemoARM"
+            "value": "storagedemoarm"
         },
         "containername": {
-            "value": "democontainerARM"
+            "value": "democontainerarm"
         },
         "sqlservername": {
-            "value": "demosqlserverARM"
+            "value": "demosqlserverarm"
         },
         "sqladmin": {
-            "value": "admin123"
+            "value": ""
         },
         "pass": {
-            "value": "test123!"
+            "value": ""
         }
     }
 }
